@@ -1,5 +1,8 @@
 package nov.chang.portfolio;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -41,18 +44,56 @@ public class MainActivity extends AppCompatActivity {
     public void startApp(View button){
         int buttonId = button.getId();
         String appName = "";
+        PackageManager packageManager = getPackageManager();
+        Intent intent;
         if (buttonId == R.id.app1) {
-            appName = getResources().getString(R.string.app_1);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("nov.chang.spotifystreamer");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_1);
+            }
         } else if (buttonId == R.id.app2) {
-            appName = getResources().getString(R.string.app_2);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("barqsoft.footballscores");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_2);
+            }
         } else if (buttonId == R.id.app3) {
-            appName = getResources().getString(R.string.app_3);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("it.jaschke.alexandria");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_3);
+            }
         } else if (buttonId == R.id.app4) {
-            appName = getResources().getString(R.string.app_4);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_4);
+            }
         } else if (buttonId == R.id.app5) {
-            appName = getResources().getString(R.string.app_5);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_5);
+            }
         } else if (buttonId == R.id.app6) {
-            appName = getResources().getString(R.string.app_6);
+            try {
+                intent = packageManager.getLaunchIntentForPackage("");
+                startActivity(intent);
+                return;
+            } catch (NullPointerException e) {
+                appName = getResources().getString(R.string.app_6);
+            }
         }
         String toastMessage = "This button will launch " + appName + "!";
         Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
